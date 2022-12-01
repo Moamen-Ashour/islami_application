@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_assignment_moamen/ThemeOfData.dart';
 import 'package:islami_assignment_moamen/home_screen/home_screen_tabs/sura_details.dart';
 
 class SuraDetails extends StatefulWidget {
@@ -33,7 +34,6 @@ class _SuraDetailsState extends State<SuraDetails> {
    if(ayat.isEmpty){
      loadTxTFiles(args.index);
    }
-
     return Stack(
       children:[
         Image.asset("assets/images/default_bg.png",
@@ -48,9 +48,19 @@ class _SuraDetailsState extends State<SuraDetails> {
           body: Container(
             child: Column(
               children: [
-                ayat.isEmpty?Center(child: CircularProgressIndicator()):ListView.builder(itemBuilder: (c,index){
-                  return Text(ayat[index]);
-                })
+                ayat.isEmpty?Center(child: CircularProgressIndicator()):Expanded(
+                  child: ListView.separated(
+                      separatorBuilder: (c,index) => Divider(
+                        color: ThemeOfData.colorGold,
+                        indent: 50,
+                        endIndent: 50,
+                      ),
+                      itemBuilder: (c,index){
+                    return Text(ayat[index],style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                      color: ThemeOfData.colorBlack
+                    ),textAlign: TextAlign.center,);
+                  }, itemCount: ayat.length,),
+                )
               ],
             ),
           ),
