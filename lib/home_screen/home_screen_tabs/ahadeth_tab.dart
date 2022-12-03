@@ -10,8 +10,11 @@ class ahadeth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return Scaffold(
+      body: Container(
+        color: Colors.red,
+        decoration: const BoxDecoration(),  // this tab will appear a custom error massege
+      ),
     );
   }
 }

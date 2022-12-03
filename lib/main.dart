@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:islami_assignment_moamen/App_translate.dart';
 import 'package:islami_assignment_moamen/ThemeOfData.dart';
+import 'package:islami_assignment_moamen/helper_function.dart';
 import 'package:islami_assignment_moamen/home_screen/home.dart';
 import 'package:islami_assignment_moamen/home_screen/home_screen_tabs/sura_details.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
+  customErrorScreen();
   runApp(MyApp());
 }
 
