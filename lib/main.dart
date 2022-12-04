@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:islami_assignment_moamen/App_translate.dart';
 import 'package:islami_assignment_moamen/Start%20Screen/start_screen.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   customErrorScreen();
+
   runApp(MyApp());
 }
 

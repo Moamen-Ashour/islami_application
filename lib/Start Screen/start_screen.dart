@@ -1,44 +1,49 @@
 
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_assignment_moamen/ThemeOfData.dart';
+import 'package:islami_assignment_moamen/home_screen/home.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lottie/lottie.dart';
 
-class StartScreen extends StatelessWidget {
+class StartScreen extends StatefulWidget {
 
   static const String routeName = "Start";
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Stack(
-        children:[
-        Image.asset("assets/images/default_bg.png",
-        width: double.infinity,
-        fit: BoxFit.fitWidth,
-      ),
-      Scaffold(
-        body: Center(
-          child: ListView(
-            children: <Widget>[
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 28.0),
-                  child: Center(child: Text("Islamic Application",style: TextStyle(fontSize: 20, color: ThemeOfData.colorGold,),)),
-                ),
-              ),
+  State<StartScreen> createState() => _StartScreenState();
+}
 
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 28.0),
-                  child: Lottie.network('https://assets10.lottiefiles.com/packages/lf20_5tvcbbnr.json'),
-                ),
-              )
-            ],
+class _StartScreenState extends State<StartScreen> {
+  @override
+  void initState(){
+    super.initState();
+    _navigateToHome();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+      backgroundColor: Color(0xfffaf5ef),
+      splashIconSize: 500,
+      splash: ListView(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(  AppLocalizations.of(context)!.islamiapp,style: TextStyle(fontSize: 30,color: ThemeOfData.colorGold,fontWeight: FontWeight.bold),),
+            ),
           ),
-        ),
-      )]
-      ),
+          SizedBox(height: 80,),
+          Lottie.network('https://assets10.lottiefiles.com/packages/lf20_5tvcbbnr.json'),
+        ],
+      ), nextScreen: Home(),
     );
+  }
+
+  _navigateToHome()  async {
+    await Future.delayed(Duration(seconds: 50),(){});
+    Navigator.pushReplacementNamed(context, Home.routeName);
   }
 }
