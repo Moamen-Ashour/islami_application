@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:islami_assignment_moamen/App_translate.dart';
+import 'package:islami_assignment_moamen/Start%20Screen/start_screen.dart';
 import 'package:islami_assignment_moamen/ThemeOfData.dart';
 import 'package:islami_assignment_moamen/helper_function.dart';
 import 'package:islami_assignment_moamen/home_screen/home.dart';
@@ -38,10 +39,11 @@ class _MyAppState extends State<MyApp> {
       Locale('en',),
       Locale('ar',),
     ],
-    initialRoute: Home.routeName,
+    initialRoute: StartScreen.routeName,
     routes: {
       Home.routeName : (_) => Home(),
       SuraDetails.routeName : (_) => SuraDetails(),
+      StartScreen.routeName : (_) => StartScreen()
     },
     translations: AppTranslation(),
     locale: Get.deviceLocale,
