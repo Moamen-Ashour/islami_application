@@ -25,14 +25,16 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      backgroundColor: Color(0xfffaf5ef),
+      backgroundColor: Color(0xffebd8bd),
       splashIconSize: 500,
       splash: ListView(
         children: [
           Center(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text(  AppLocalizations.of(context)!.islamiapp,style: TextStyle(fontSize: 30,color: ThemeOfData.colorGold,fontWeight: FontWeight.bold),),
+              child: Column(children:[
+                Text(  AppLocalizations.of(context)!.welcome,style: TextStyle(fontSize: 20,color: ThemeOfData.colorBlack,fontWeight: FontWeight.bold),),
+                Text(  AppLocalizations.of(context)!.islamiapp,style: TextStyle(fontSize: 30,color: ThemeOfData.colorBlack,fontWeight: FontWeight.bold),)]),
             ),
           ),
           SizedBox(height: 80,),
