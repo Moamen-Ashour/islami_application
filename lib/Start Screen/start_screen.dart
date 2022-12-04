@@ -36,14 +36,14 @@ class _StartScreenState extends State<StartScreen> {
             ),
           ),
           SizedBox(height: 80,),
-          Lottie.network('https://assets10.lottiefiles.com/packages/lf20_5tvcbbnr.json'),
+          Lottie.asset("assets/json/quran.json"),
         ],
       ), nextScreen: Home(),
     );
   }
 
   _navigateToHome()  async {
-    await Future.delayed(Duration(seconds: 50),(){});
+    await Future.delayed(Duration(seconds: 30),(){});
     Navigator.pushReplacementNamed(context, Home.routeName);
   }
 }
