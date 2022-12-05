@@ -7,6 +7,7 @@ import 'package:islami_assignment_moamen/ThemeOfData.dart';
 import 'package:islami_assignment_moamen/helper_function.dart';
 import 'package:islami_assignment_moamen/home_screen/home.dart';
 import 'package:islami_assignment_moamen/home_screen/home_screen_tabs/sura_details.dart';
+import 'package:islami_assignment_moamen/home_screen/home_screen_tabs/ahadeth_details.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -45,7 +46,8 @@ class _MyAppState extends State<MyApp> {
     routes: {
       Home.routeName : (_) => Home(),
       SuraDetails.routeName : (_) => SuraDetails(),
-      StartScreen.routeName : (_) => StartScreen()
+      StartScreen.routeName : (_) => StartScreen(),
+      HadethDetails.routeName : (_) => HadethDetails(),
     },
     translations: AppTranslation(),
     locale: Get.deviceLocale,

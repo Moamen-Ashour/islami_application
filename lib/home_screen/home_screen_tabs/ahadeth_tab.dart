@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:islami_assignment_moamen/ThemeOfData.dart';
+import 'package:islami_assignment_moamen/home_screen/home_screen_tabs/ahadeth_details.dart';
 
 class ahadeth extends StatefulWidget {
 
@@ -45,7 +46,11 @@ class _HadethDetailsState extends State<ahadeth> {
           ahadethList.isEmpty?Center(child: CircularProgressIndicator()):Expanded(
             child: ListView.separated(
                 itemBuilder: (c,index){
-                  return Text(ahadethList[index].title,style: Theme.of(context).textTheme.subtitle1,textAlign: TextAlign.center,);
+                  return InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, HadethDetails.routeName,arguments: ahadethList[index]);
+                      },
+                      child: Text(ahadethList[index].title,style: Theme.of(context).textTheme.subtitle1,textAlign: TextAlign.center,));
                 }, itemCount: ahadethList.length,
               separatorBuilder: (BuildContext context, int index) => Divider(
                 color: ThemeOfData.colorGold,
