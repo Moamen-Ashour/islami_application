@@ -50,13 +50,33 @@ class _radioState extends State<radio> {
       });
     });
 
+
+
   }
 
-
+  bool nextAudio = false;
   @override
   void dispose(){
     audioPlayer.dispose();
     super.dispose();
+  }
+
+   String souraName(){
+    if(itsPlaying && nextAudio == false){
+       return AppLocalizations.of(context)!.elbaqra;
+     }if(itsPlaying && nextAudio == true){
+      return AppLocalizations.of(context)!.alemran;
+    }
+    return AppLocalizations.of(context)!.souraName;
+   }
+
+  String shiakName(){
+    if(itsPlaying && nextAudio == false){
+      return AppLocalizations.of(context)!.mesharyalafasy;
+    }if(itsPlaying && nextAudio == true){
+      return AppLocalizations.of(context)!.mesharyalafasy;
+    }
+    return AppLocalizations.of(context)!.shiakName;
   }
 
   @override
@@ -70,8 +90,8 @@ class _radioState extends State<radio> {
           borderRadius:BorderRadius.circular(20),
           child: Image.asset("assets/images/radio_image.png",width: double.infinity,height: 200,fit: BoxFit.cover,),
         ),
-        Text(AppLocalizations.of(context)!.elbaqra,style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-        Text(AppLocalizations.of(context)!.mesharyalafasy,style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal),),
+        Text(souraName(),style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+        Text(shiakName(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal),),
         Slider(
             min : 0,
             max: duration.inSeconds.toDouble(),
@@ -93,29 +113,82 @@ class _radioState extends State<radio> {
             ],
           ),
         ),
-        CircleAvatar(
-          radius: 45,
-          backgroundColor: ThemeOfData.colorGold,
-          child: CircleAvatar(
-            radius: 40,
-            backgroundColor: Color(0xfffaf5ef),
-            foregroundColor: ThemeOfData.colorGold,
-            child: IconButton(
-              icon: Icon(
-                itsPlaying ? Icons.pause : Icons.play_arrow,
+        Row(
+
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CircleAvatar(
+              radius: 45,
+              backgroundColor: ThemeOfData.colorGold,
+              child: CircleAvatar(
+                radius: 40,
+                backgroundColor: Color(0xfffaf5ef),
+                foregroundColor: ThemeOfData.colorGold,
+                child: IconButton(
+                  icon: Icon(
+                    itsPlaying ? Icons.pause : Icons.play_arrow,
+                  ),
+                  iconSize: 50,
+                  onPressed: () async {
+                    if(itsPlaying){
+                      await audioPlayer.pause();
+                    } else {
+                await audioPlayer.resume();
+                    }
+                  },
+                ),
               ),
-              iconSize: 50,
-              onPressed: () async {
-                if(itsPlaying){
-                  await audioPlayer.pause();
-                } else {
-            await audioPlayer.resume();
-                }
-              },
             ),
-          ),
-        )
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: ThemeOfData.colorGold,
+              child: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color(0xfffaf5ef),
+                foregroundColor: ThemeOfData.colorGold,
+                child:   IconButton(
+                  icon: Icon(
+                    Icons.skip_next,
+                  ),
+                  iconSize: 28,
+                  onPressed: () async {
+                    if(itsPlaying){
+                      await audioPlayer.stop();
+                      setAudio2();
+                    }else{
+                      await audioPlayer.stop();
+                    }
+                  },
+                ),
+              ),
+            ),
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: ThemeOfData.colorGold,
+              child: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color(0xfffaf5ef),
+                foregroundColor: ThemeOfData.colorGold,
+                child:   IconButton(
+                  icon: Icon(
+                    Icons.stop,
+                  ),
+                  iconSize: 28,
+                  onPressed: () async {
+                    if(itsPlaying){
+                      await audioPlayer.stop();
+                    }else{
+                      await audioPlayer.stop();
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+
       ],
+
     );
   }
 
@@ -134,12 +207,19 @@ class _radioState extends State<radio> {
   }
 
   void setAudio() async{
-    audioPlayer.setReleaseMode(ReleaseMode.loop);
+    audioPlayer.setReleaseMode(ReleaseMode.stop);
 
    final player = AudioCache(prefix: 'assets/audio/');
    final url = await player.load('baqra.mp3');
    audioPlayer.setSourceUrl(url.path, );
 
+  }
+
+  void setAudio2() async{
+    nextAudio = true;
+    final player = AudioCache(prefix: 'assets/audio/');
+    final url = await player.load('alemran.mp3');
+    audioPlayer.setSourceUrl(url.path, );
   }
 
 }

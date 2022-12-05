@@ -36,22 +36,11 @@ class _HomeState extends State<Home> {
 
 
    showLocaleDialog(BuildContext context){
-
-
      final locales = [
        {'name':AppLocalizations.of(context)!.arabic},
        {'name':AppLocalizations.of(context)!.english},
        {'name':AppLocalizations.of(context)!.newlanguage},
-       // {
-       //   'name':'Hindi',
-       //   'locale':Locale('hi','IN')
-       // },
-       // {
-       //   'name':'German',
-       //   'locale':Locale('de','DE')
-       // }
      ];
-
      showDialog(context: context,
          builder: (_) => AlertDialog(
            title: Text(AppLocalizations.of(context)!.choose),
@@ -87,47 +76,49 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        children:[
-          Image.asset("assets/images/default_bg.png",
-            width: double.infinity,
-            fit: BoxFit.fitWidth,
-          ),
-          Scaffold(
-            body: HomeTabs[CurrentIndex],
-            appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.islami, style: Theme.of(context).textTheme.headline1,),
-                actions:[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: GestureDetector(
-                    onTap: () {},
-                    child: IconButton(
-                      onPressed: () =>  showLocaleDialog(context),
-                      icon: Icon(Icons.language,
-                        size: 26.0,),
-                    ),
-                ),
-                  )],
-        ),
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: (index){
-                CurrentIndex = index;
-                setState(() {
-
-                });
-              }
-              ,
-              currentIndex: CurrentIndex,
-              items: [
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_quran.png")), label: AppLocalizations.of(context)!.quran),
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_hadeth.png")), label: AppLocalizations.of(context)!.ahadeth),
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_radio.png")), label: AppLocalizations.of(context)!.radio),
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")), label: AppLocalizations.of(context)!.sebha),
-              ],
+    return SafeArea(
+      child: Stack(
+          children:[
+            Image.asset("assets/images/default_bg.png",
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
             ),
+            Scaffold(
+              body: HomeTabs[CurrentIndex],
+              appBar: AppBar(
+              title: Text(AppLocalizations.of(context)!.islami, style: Theme.of(context).textTheme.headline1,),
+                  actions:[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                      onTap: () {},
+                      child: IconButton(
+                        onPressed: () =>  showLocaleDialog(context),
+                        icon: Icon(Icons.language,
+                          size: 26.0,),
+                      ),
+                  ),
+                    )],
+          ),
+              bottomNavigationBar: BottomNavigationBar(
+                onTap: (index){
+                  CurrentIndex = index;
+                  setState(() {
+
+                  });
+                }
+                ,
+                currentIndex: CurrentIndex,
+                items: [
+                  BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_quran.png")), label: AppLocalizations.of(context)!.quran),
+                  BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_hadeth.png")), label: AppLocalizations.of(context)!.ahadeth),
+                  BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_radio.png")), label: AppLocalizations.of(context)!.radio),
+                  BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")), label: AppLocalizations.of(context)!.sebha),
+                ],
+              ),
+        ),
+        ]
       ),
-      ]
     );
   }
 }
