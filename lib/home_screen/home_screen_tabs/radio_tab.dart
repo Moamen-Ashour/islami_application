@@ -63,9 +63,9 @@ class _radioState extends State<radio> {
 
    String souraName(){
     if(itsPlaying && nextAudio == false){
-       return AppLocalizations.of(context)!.elbaqra;
+       return AppLocalizations.of(context)!.aleklas;
      }if(itsPlaying && nextAudio == true){
-      return AppLocalizations.of(context)!.alemran;
+      return AppLocalizations.of(context)!.alnas;
     }
     return AppLocalizations.of(context)!.souraName;
    }
