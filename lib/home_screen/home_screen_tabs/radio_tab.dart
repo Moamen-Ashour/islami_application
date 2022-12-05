@@ -210,7 +210,7 @@ class _radioState extends State<radio> {
     audioPlayer.setReleaseMode(ReleaseMode.stop);
 
    final player = AudioCache(prefix: 'assets/audio/');
-   final url = await player.load('baqra.mp3');
+   final url = await player.load('aleklas.mp3');
    audioPlayer.setSourceUrl(url.path, );
 
   }
@@ -218,7 +218,7 @@ class _radioState extends State<radio> {
   void setAudio2() async{
     nextAudio = true;
     final player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('alemran.mp3');
+    final url = await player.load('alnas.mp3');
     audioPlayer.setSourceUrl(url.path, );
   }
 
